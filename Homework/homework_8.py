@@ -67,9 +67,21 @@ def find_by_attribute(file_name:str,option: bool):
         id = input("Введите id нужного пользователя: ")
     return data[int(id)-1]
 
+import shutil
 
+def export_contacts(file_name):
+    
+    export_file_name = input("ВВедите")
 
+    
+    shutil.copyfile(file_name, export_file_name)
 
+def import_contacts(import_file):
+    
+    import_file_name = input("ВВедите откуда хотите импортировать")
+
+    
+    shutil.copyfile(import_file_name, import_file)    
 
 
 
@@ -94,6 +106,7 @@ def add_new(file_name: str):
 
 def main():
     file_name = 'phonebook.txt'
+    import_file = 'phonebook123.txt'
     flag_exit = False
     while not flag_exit:
         print('1 - показать все записи')
@@ -101,6 +114,8 @@ def main():
         print('3 - удалить запись')
         print('4 - изменить запись')
         print('5 - поиск записи по имени/фамилии')
+        print('6 - экспортировать в выбранный файл')
+        print('7 - импортировать из выбранный файл')
         answer = input('Введите операцию или x для выхода: ')
         if answer == '1':
             show_all(file_name=file_name)
@@ -114,6 +129,12 @@ def main():
             print(find_by_attribute(file_name,False))
         elif answer == 'x':
             flag_exit = True
+        elif answer == '6':
+            export_contacts(file_name)
+        elif answer == '7':   
+            export_contacts(import_file) 
+
+            
 
 if __name__ == '__main__':
     main()
